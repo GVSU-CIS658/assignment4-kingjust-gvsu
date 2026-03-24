@@ -64,6 +64,19 @@
       <input type="text" v-model="beverageName" />
     </label>
     <button @click="store.makeBeverage(beverageName)">Make Beverage</button>
+    <div id="beverage-container">
+      <template v-for="beverage in savedBeverages" :key="beverage.id">
+        <label>
+          <input
+            type="radio"
+            name="savedBeverage"
+            :value="beverage"
+            @change="store.showBeverage(beverage)"
+          />
+          {{ beverage.name }}
+        </label>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -84,6 +97,7 @@ const {
   currentCreamer,
   syrups,
   currentSyrup,
+  savedBeverages,
 } = storeToRefs(store);
 </script>
 
