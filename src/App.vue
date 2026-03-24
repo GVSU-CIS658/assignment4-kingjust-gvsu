@@ -63,7 +63,7 @@
       Name
       <input type="text" v-model="beverageName" />
     </label>
-    <button @click="store.makeBeverage(beverageName)">Make Beverage</button>
+    <button @click="store.makeBeverage(beverageName)">&#127861; Make Beverage</button>
     <div id="beverage-container">
       <template v-for="beverage in savedBeverages" :key="beverage.id">
         <label>
