@@ -63,7 +63,8 @@
       Name
       <input type="text" v-model="beverageName" />
     </label>
-    <button @click="store.makeBeverage(beverageName)">&#127861; Make Beverage</button>
+    <button @click="handleMakeBeverage">&#127861; Make Beverage</button>
+    <p v-if="nameError" class="error">{{ nameError }}</p>
     <div id="beverage-container">
       <template v-for="beverage in savedBeverages" :key="beverage.id">
         <label>
@@ -88,6 +89,20 @@ import { useBeverageStore } from "./stores/beverageStore";
 
 const store = useBeverageStore();
 const beverageName = ref("");
+const nameError = ref("");
+
+function handleMakeBeverage() {
+  if (!beverageName.value.trim()) {
+    nameError.value = "Please enter a beverage name.";
+    return;
+  }
+  if (store.savedBeverages.some((b) => b.name === beverageName.value.trim())) {
+    nameError.value = "A beverage with that name already exists.";
+    return;
+  }
+  nameError.value = "";
+  store.makeBeverage(beverageName.value);
+}
 const {
   temps,
   currentTemp,
@@ -114,5 +129,10 @@ html {
 }
 ul {
   list-style: none;
+}
+.error {
+  color: #f32525da;
+  font-size: 0.9em;
+  margin: 0.25em 0;
 }
 </style>
