@@ -15,7 +15,10 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-import { currentCreamer, currentSyrup } from "../stores/beverage";
+import { storeToRefs } from "pinia";
+import { useBeverageStore } from "../stores/beverageStore";
+
+const { currentCreamer, currentSyrup } = storeToRefs(useBeverageStore());
 
 const hasSyrup = computed(() => currentSyrup.value.id !== "s1");
 const animDelay = computed(() => (hasSyrup.value ? "2s" : "1s"));

@@ -64,7 +64,11 @@
 
 <script setup lang="ts">
 import Beverage from "./components/Beverage.vue";
-import {
+import { storeToRefs } from "pinia";
+import { useBeverageStore } from "./stores/beverageStore";
+
+const store = useBeverageStore();
+const {
   temps,
   currentTemp,
   bases,
@@ -73,7 +77,7 @@ import {
   currentCreamer,
   syrups,
   currentSyrup,
-} from "./stores/beverage";
+} = storeToRefs(store);
 </script>
 
 <style lang="scss">
