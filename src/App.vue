@@ -59,15 +59,22 @@
         </template>
       </li>
     </ul>
+    <label>
+      Name
+      <input type="text" v-model="beverageName" />
+    </label>
+    <button @click="store.makeBeverage(beverageName)">Make Beverage</button>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import Beverage from "./components/Beverage.vue";
 import { storeToRefs } from "pinia";
 import { useBeverageStore } from "./stores/beverageStore";
 
 const store = useBeverageStore();
+const beverageName = ref("");
 const {
   temps,
   currentTemp,

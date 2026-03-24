@@ -24,10 +24,10 @@ export const useBeverageStore = defineStore("BeverageStore", {
   }),
 
   actions: {
-    makeBeverage() {
+    makeBeverage(name: string) {
       const beverage: BeverageType = {
         id: Date.now().toString(),
-        name: `${this.currentTemp} ${this.currentBase.name}`,
+        name,
         temp: this.currentTemp,
         base: { ...this.currentBase },
         syrup: { ...this.currentSyrup },
